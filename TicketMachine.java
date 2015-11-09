@@ -66,7 +66,7 @@ public class TicketMachine
      * an error message if more money is required.
      */
     public void printTicket()
-    {
+   {
         if(balance >= price) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
@@ -82,8 +82,9 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
+            int amountLeftToPay = price - balance;
             System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
+                               (amountLeftToPay) + " more cents.");
                     
         }
     }
@@ -100,13 +101,18 @@ public class TicketMachine
         return amountToRefund;
     }
     
-    /**
-     * Metodo para vaciar la máquina
-     */
+    /*
+	Metodo para vaciar la máquina.
+    */
     public int emptyMachine()
     {
-	int recaudacion = total;
-	total = 0;
-	return recaudacion;	
+    	if (balance == 0) {
+		int recaudacion = total;
+		total = 0;
+		return recaudacion;	
+    	}
+    	else {
+    		return -1;
+    	}
     }
 }
